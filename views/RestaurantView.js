@@ -8,10 +8,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 class RestaurantView{
-    getView({ navigation }){
+    getView({ navigation, route }){
+        const {restaurantName} = route.params;
         return(
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                <Text>New Restaurant Page</Text> 
+                <Text>{restaurantName}</Text> 
+                <Text>Dog</Text>
             </View>
         );
     }

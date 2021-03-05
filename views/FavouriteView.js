@@ -1,17 +1,21 @@
 //Default imports
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React  from 'react';
+import { Text, View, FlatList } from 'react-native';
 
-//Custom imports
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { favController } from './../Controllers/FavouriteController.js';
+import { restaurantListView } from './RestaurantListView.js';
 
 class FavouriteView{
-    getView({ navigation }){
+    getView({ navigation }) {
         return(
             <View>
                 <Text>Favourite Page</Text> 
+                <View style={{height: 200}}>
+                    <FlatList 
+                        data={favController.getFavouriteList()}
+                        renderItem={({item}) => restaurantListView.create(item.key, navigation)}
+                    />
+                </View>
             </View>
         );
     }
