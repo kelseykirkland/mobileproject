@@ -3,25 +3,27 @@ import React from 'react';
 import { Button, Text, View, FlatList } from 'react-native';
 
 import { selectController } from './../Controllers/SelectController.js';
-import { restaurantListView } from './RestaurantListView.js';
+import RestaurantListView from './RestaurantListView.js';
 
+export default class SelectView extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-class SelectView{
-    getView({ navigation }){
+    render() {
         return(
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
                 <Text>New Select Page</Text> 
-                <Button title= "Confirm" onPress={() => navigation.navigate("Randomizer")} />
+                <Button title= "Confirm" onPress={() => this.props.navigation.navigate("Randomizer")} />
                 <View style={{height: 200}}>
                     <FlatList 
                         data={selectController.getSelectList()}
-                        renderItem={({item}) => restaurantListView.create(item.key, navigation)}
+                        renderItem={({item}) => (
+                            <RestaurantListView name={item.key} navFunc={this.props.navigation.navigate} />
+                        )}
                     />
                 </View>
             </View>
         );
     }
 }
-
-const selectView = new SelectView();
-export { selectView };

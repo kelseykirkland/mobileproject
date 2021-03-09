@@ -1,27 +1,20 @@
-// This will be the objects for restaurants that are shown in a list
-// for select and favourite pages. 
-
-//Default imports
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
+import PropTypes from 'prop-types'
 
-//Custom imports
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+export default class RestaurantListView extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-
-
-class RestaurantListView {
-    create( name, navigation ) {
+    render () {
         return (
             <View style={{Height: 50, borderColor: 'Black', borderBottomWidth: 1, borderTopWidth: 1, borderLeftWidth: 1, borderRightWidth: 1}}>
-                <Text> {name} </Text>
-                <Button title= "Info" onPress={() => navigation.navigate("Restaurant", {restaurantName: name})} />
+                <Text> {this.props.name} </Text>
+                <Button title= "Info" onPress={() => this.props.navFunc("Restaurant", { name: this.props.name })} />
             </View>
         );
     }
 }
 
-const restaurantListView = new RestaurantListView();
-export { restaurantListView }
+RestaurantListView.propTypes = {name: PropTypes.string.isRequired, navFunc: PropTypes.func.isRequired};

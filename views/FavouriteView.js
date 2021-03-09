@@ -1,25 +1,28 @@
 //Default imports
-import React  from 'react';
+import React, { Component }  from 'react';
 import { Text, View, FlatList } from 'react-native';
 
 import { favController } from './../Controllers/FavouriteController.js';
-import { restaurantListView } from './RestaurantListView.js';
+import RestaurantListView from './RestaurantListView.js';
 
-class FavouriteView{
-    getView({ navigation }) {
+export default class FavouriteView extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
         return(
             <View>
                 <Text>Favourite Page</Text> 
                 <View style={{height: 200}}>
                     <FlatList 
                         data={favController.getFavouriteList()}
-                        renderItem={({item}) => restaurantListView.create(item.key, navigation)}
+                        renderItem={({item}) => (
+                            <RestaurantListView name={item.key} navFunc={this.props.navigation.navigate} />
+                        )}
                     />
                 </View>
             </View>
         );
     }
 }
-
-const favView = new FavouriteView();
-export { favView };
