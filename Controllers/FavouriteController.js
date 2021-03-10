@@ -5,20 +5,17 @@
 // The objects will have the information that is gotten from the 
 // restaurants that are a resultant of the favourite list.
 
-var favouriteList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
-{key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
+export default class FavouriteController {
+    favouriteList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
+    {key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
 
-class FavouriteController {
     getFavouriteList() {
-        return favouriteList;
+        return this.favouriteList;
     }
 
     //This is a function used for testing if the favourite list being changed will reflect
     //in the view.
     setFavouriteList() {
-        favouriteList = [{key: "Alpha"}, {key: "Beta"}, {key: "Charlie"}];
+        this.favouriteList = [{key: "Alpha"}, {key: "Beta"}, {key: "Charlie"}];
     }
 }
-
-const favController = new FavouriteController();
-export { favController };
