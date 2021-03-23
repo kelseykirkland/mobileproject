@@ -13,19 +13,30 @@ import SelectView from './views/SelectView.js';
 import RandomizeView from './views/RandomizeView.js';
 import RestaurantView from './views/RestaurantView.js';
 
+import FavouriteController from './Controllers/FavouriteController.js';
+import SelectController from './Controllers/SelectController.js';
+
 const Stack = createStackNavigator();
 
-export default function App() {
-	return (
-		<NavigationContainer>
-			<Stack.Navigator>
-				<Stack.Screen name = "Home" component={HomeView} />
-				<Stack.Screen name = "Favourite" component={FavouriteView} />
-				<Stack.Screen name = "Location" component={LocationView} />
-				<Stack.Screen name = "Select" component= {SelectView} />
-				<Stack.Screen name = "Randomizer" component={RandomizeView} />
-				<Stack.Screen name = "Restaurant" component={RestaurantView} />
-			</Stack.Navigator>
-		</NavigationContainer>	
-	)
+export default class App extends React.Component{
+
+	state = {
+		favouriteController: new FavouriteController(),
+		selectController: new SelectController()
+	}
+
+	render(){
+		return (
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen name = "Home" component={HomeView} initialParams={{state: this.state}}/>
+					<Stack.Screen name = "Favourite" component={FavouriteView} initialParams={{state: this.state}}/>
+					<Stack.Screen name = "Location" component={LocationView} initialParams={{state: this.state}}/>
+					<Stack.Screen name = "Select" component= {SelectView} initialParams={{state: this.state}}/>
+					<Stack.Screen name = "Randomizer" component={RandomizeView} initialParams={{state: this.state}}/>
+					<Stack.Screen name = "Restaurant" component={RestaurantView} initialParams={{state: this.state}}/>
+				</Stack.Navigator>
+			</NavigationContainer>	
+		)
+	}
 }
