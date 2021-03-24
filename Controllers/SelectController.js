@@ -38,7 +38,7 @@ export default class SelectController {
         // })
         // console.log(JSON.stringify(data))
         let request = new XMLHttpRequest();
-        request.open("GET", 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.51206156408919,-80.20931413777406&radius=1500&type=restaurant&key=AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8');
+        request.open("GET", 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.51206156408919,-80.20931413777406&radius=1500&type=restaurant&key=');
         request.send();
         request.onload = () => {
             //console.log(request);
@@ -49,7 +49,7 @@ export default class SelectController {
             }
         }
 
-        fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.51206156408919,-80.20931413777406&radius=1500&type=restaurant&key=AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8') 
+        fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.51206156408919,-80.20931413777406&radius=1500&type=restaurant&key=') 
             .then(response => {
                 return response.json();
             })
@@ -63,8 +63,7 @@ export default class SelectController {
 const selectController = new SelectController();
 export { selectController };
 
-//API KEY
-// AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8
+
 
 // Nearby Search Requests
 // HTTP URL
@@ -78,4 +77,3 @@ export { selectController };
 // other keyword(ie. restaurant) or type ie. restaurant
 // Example: https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
 // FOR US:
-// https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=(lat,long)&radius=1500&type=restaurant&key=AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8
