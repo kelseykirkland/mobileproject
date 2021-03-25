@@ -16,6 +16,10 @@ export default class LocationView extends React.Component{
         super(props);
     }
 
+    // this.setState({
+    //     location: locationController.getCoordinates();
+    // })
+
     getCoordinates = () => {
         navigator.geolocation.getCurrentPosition(
           position => { 
@@ -31,6 +35,14 @@ export default class LocationView extends React.Component{
                 { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         );
     };
+
+    // setlocation = () => {
+    //     this.setState({
+    //         location: locationController.getCoordinates(),
+    //     });
+    //     console.log("hello");
+    //     console.log(this.state.location);
+    // }
     
 
     render() {
@@ -38,13 +50,13 @@ export default class LocationView extends React.Component{
             <View style={{flex: 1, alignItems: "center"}}>
                 <Text>New Location Page</Text> 
                 <Button title="Get Location!"
-                   onPress={this.getCoordinates()}/>
+                   onPress={() => this.getCoordinates()}/>
                 
-                <Text> Longitude: {this.state.longitude} </Text>
-                <Text> Latitude:  {this.state.latitude} </Text>
+                {/* <Text> Longitude: {this.state.longitude} </Text>
+                <Text> Latitude:  {this.state.latitude} </Text> */}
                 <Text> Location:  {this.state.location} </Text>
                 <Button title="Try"
-                   onPress={selectController.getRestaurantList(this.state.location)}/>
+                   onPress={() => selectController.getRestaurantList(this.state.location)}/>
                 <Button title= "Confirm" onPress={() => this.props.navigation.navigate("Select")} />
             </View>
         );

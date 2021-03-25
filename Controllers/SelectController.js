@@ -1,6 +1,8 @@
 
 export default class SelectController {
 
+    location = null;
+
     selectList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
     {key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
 
@@ -14,57 +16,75 @@ export default class SelectController {
         this.selectList = [{key: "Delta"}, {key: "Echo"}, {key: "Fox"}];
     }
 
+    getCoordinates = () => {
+        var loc;
+        navigator.geolocation.getCurrentPosition(
+          position => { 
+            const long = JSON.stringify(position.coords.longitude);
+            const lat = JSON.stringify(position.coords.latitude);
+            this.longitude = long;
+            this.latitude = lat;
+            this.location = lat+","+long;
+            loc = lat+","+long;
+            console.log("*"+this.location);
+            return loc;
+            
+          },
+          error => Alert.alert(error.message),
+                { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        );
+        //console.log(loc);
+        //return location;
+    };
+
     getRestaurantList(location) {
         console.log("HELLO")
         console.log(location)
-        // const axios = require('axios')
-        // const router = require('express').Router()
 
-        // module.exports = router
-        // const key = process.env.GOOGLE_API_KEY
-        // router.get('/restaurants', async (req, res, next) => {
-        //     try {
-        //       const location = location
-        //       const radius = '1500'
-        //       const {data} = await axios.get(
-              
-        //    'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=1500&type=restaurant&key=AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8'
-        //       )
-        //       res.json(data)
-        //       } 
-        //     catch (err) {
-        //      next(err)
-        //    }
-        // })
-        // console.log(JSON.stringify(data))
+        if(location == null) {
+            console.log("location is null: "+location);
+            return;
+        }
+
+        const key = process.env.GOOGLE_API_KEY;
+
+        var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key=key';
+        console.log(httpString);
+        
         let request = new XMLHttpRequest();
-        request.open("GET", 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.51206156408919,-80.20931413777406&radius=1500&type=restaurant&key=AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8');
+        request.open("GET", httpString);
         request.send();
         request.onload = () => {
             //console.log(request);
             if(request.status == 200) {
-                console.log(JSON.parse(request.response));
+                //console.log(JSON.parse(request.response));
+                this.makeRestaurantList(JSON.parse(request.response))
             } else {
                 console.log('error ${request.status} ${request.statusTest}')
             }
         }
-
-        fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.51206156408919,-80.20931413777406&radius=1500&type=restaurant&key=AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8') 
-            .then(response => {
-                return response.json();
-            })
-            .then(users => {
-                console.log(users)
-            });
-        
     }
+
+    makeRestaurantList(data) {
+        console.log("Number of Restraunts: "+data.results.length);
+        var restList = [];
+
+        for (let i = 0; i < data.results.length; i++) {
+            //console.log(data.results[i].name);
+            restList.push(data.results[i].name);
+        }
+        console.log(restList);
+        // this.selectList = restList;
+        // console.log(this.selectList);
+
+    }
+    
 }
 
 const selectController = new SelectController();
 export { selectController };
 
-//API KEY
-// AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8
+
 
 // Nearby Search Requests
 // HTTP URL
@@ -78,4 +98,4 @@ export { selectController };
 // other keyword(ie. restaurant) or type ie. restaurant
 // Example: https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
 // FOR US:
-// https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=(lat,long)&radius=1500&type=restaurant&key=AIzaSyC55YGIUhYvCCZo9ktJroBqWeSceQWd_-8
+// https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=(lat,long)&radius=1500&type=restaurant&key=
