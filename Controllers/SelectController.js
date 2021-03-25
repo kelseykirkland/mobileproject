@@ -63,6 +63,7 @@ export default class SelectController {
                 console.log('error ${request.status} ${request.statusTest}')
             }
         }
+        
     }
 
     makeRestaurantList(data) {
