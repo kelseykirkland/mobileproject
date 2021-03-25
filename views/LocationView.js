@@ -36,27 +36,15 @@ export default class LocationView extends React.Component{
         );
     };
 
-    // setlocation = () => {
-    //     this.setState({
-    //         location: locationController.getCoordinates(),
-    //     });
-    //     console.log("hello");
-    //     console.log(this.state.location);
-    // }
-    
-
     render() {
         return (
             <View style={{flex: 1, alignItems: "center"}}>
                 <Text>New Location Page</Text> 
                 <Button title="Get Location!"
                    onPress={() => this.getCoordinates()}/>
-                
-                {/* <Text> Longitude: {this.state.longitude} </Text>
-                <Text> Latitude:  {this.state.latitude} </Text> */}
                 <Text> Location:  {this.state.location} </Text>
                 <Button title="Try"
-                   onPress={() => selectController.getRestaurantList(this.state.location)}/>
+                   onPress={() => this.props.route.params.state.selectController.getRestaurantList(this.state.location)}/>
                 <Button title= "Confirm" onPress={() => this.props.navigation.navigate("Select")} />
             </View>
         );

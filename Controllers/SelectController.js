@@ -10,10 +10,17 @@ export default class SelectController {
         return this.selectList;
     }
 
-    //This is a function used for testing if the favourite list being changed will reflect
-    //in the view.
-    setSelectList() {
-        this.selectList = [{key: "Delta"}, {key: "Echo"}, {key: "Fox"}];
+    clearSelectList() {
+        this.selectList = [];
+    }
+
+    // Sets the select list
+    // Param: array of restraunt object like select list
+    setSelectList(data) {
+        //this.selectList = [{key: "Delta"}, {key: "Echo"}, {key: "Fox"}];
+        this.selectList = data;
+        console.log("SELECT LIST");
+        console.log(this.selectList);
     }
 
     getCoordinates = () => {
@@ -22,8 +29,8 @@ export default class SelectController {
           position => { 
             const long = JSON.stringify(position.coords.longitude);
             const lat = JSON.stringify(position.coords.latitude);
-            this.longitude = long;
-            this.latitude = lat;
+            //this.longitude = long;
+            //this.latitude = lat;
             this.location = lat+","+long;
             loc = lat+","+long;
             console.log("*"+this.location);
@@ -33,10 +40,9 @@ export default class SelectController {
           error => Alert.alert(error.message),
                 { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         );
-        //console.log(loc);
-        //return location;
     };
 
+    //Param: location in string from of lat,long
     getRestaurantList(location) {
         console.log("HELLO")
         console.log(location)
@@ -46,9 +52,10 @@ export default class SelectController {
             return;
         }
 
-        const key = process.env.GOOGLE_API_KEY;
+        //var key = process.env.GOOGLE_API_KEY;
+        var key = 
 
-        var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key=key';
+        var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key='+key;
         console.log(httpString);
         
         let request = new XMLHttpRequest();
@@ -63,21 +70,23 @@ export default class SelectController {
                 console.log('error ${request.status} ${request.statusTest}')
             }
         }
-        
+
     }
 
     makeRestaurantList(data) {
         console.log("Number of Restraunts: "+data.results.length);
         var restList = [];
+        var restObjList = [];
 
         for (let i = 0; i < data.results.length; i++) {
             //console.log(data.results[i].name);
             restList.push(data.results[i].name);
+            var rest = {key: data.results[i].name}
+            restObjList.push(rest)
         }
-        console.log(restList);
-        // this.selectList = restList;
-        // console.log(this.selectList);
-
+        //console.log(restList);
+        //console.log(restObjList);
+        this.setSelectList(restObjList);
     }
     
 }
