@@ -1,7 +1,7 @@
 //Default imports
 import React from 'react';
 import { Button, Text, View, FlatList } from 'react-native';
-import RestaurantListView from './RestaurantListView.js';
+import PickRestaurantListView from './PickRestaurantListView.js';
 
 export default class SelectView extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ export default class SelectView extends React.Component {
                     <FlatList 
                         data={this.props.route.params.state.selectController.getSelectList()}
                         renderItem={({item}) => (
-                            <RestaurantListView name={item.key} navFunc={this.props.navigation.navigate} />
+                            <PickRestaurantListView name={item.key} navFunc={this.props.navigation.navigate} />
                         )}
                     />
                 </View>
