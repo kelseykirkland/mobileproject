@@ -6,8 +6,9 @@
 // restaurants that are a resultant of the favourite list.
 
 export default class FavouriteController {
-    favouriteList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
-    {key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
+    // favouriteList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
+    // {key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
+    favouriteList = [];
 
     getFavouriteList() {
         return this.favouriteList;
@@ -18,4 +19,28 @@ export default class FavouriteController {
     setFavouriteList() {
         this.favouriteList = [{key: "Alpha"}, {key: "Beta"}, {key: "Charlie"}];
     }
+
+    clearFavouriteList() {
+        this.favouritesList = [];
+    }
+
+    addToFavouriteList(restaurant) {
+        console.log(restaurant);
+        var rest = {key: restaurant};
+        this.favouriteList.push(rest);
+        console.log(this.favouriteList);  
+    }
+
+    removeFromFavourites(restaurantName) {
+        console.log("Removing "+restaurantName);
+        for (var i = 0; i < this.favouriteList.length; i++) {
+            if(restaurantName == this.favouriteList[i].key) {
+                this.favouriteList.splice(i,1);
+            }
+        }
+        console.log(this.favouriteList);
+    }
 }
+
+const favouriteController = new FavouriteController();
+export { favouriteController };

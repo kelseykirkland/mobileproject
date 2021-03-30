@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, Text, View } from 'react-native';
 import PropTypes from 'prop-types'
 
-import { randomizerController } from './../Controllers/RandomizerController.js';
-import { favouriteController } from './../Controllers/FavouriteController.js';
+import { randomizerController } from '../Controllers/RandomizerController.js';
+import { favouriteController } from '../Controllers/FavouriteController.js';
 
-export default class PickRestaurantListView extends React.Component {
+export default class RandomizeRestaurantListView extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -14,7 +14,7 @@ export default class PickRestaurantListView extends React.Component {
         return (
             <View style={{Height: 50, borderColor: 'Black', borderBottomWidth: 1, borderTopWidth: 1, borderLeftWidth: 1, borderRightWidth: 1}}>
                 <Text> {this.props.name} </Text>
-                <Button title= "Yes" onPress={() => randomizerController.addRestaurant(this.props.name)} />
+                <Button title= "Remove" onPress={() => randomizerController.removeFromRandomize(this.props.name)} />
                 <Button title= "Info" onPress={() => this.props.navFunc("Restaurant", { name: this.props.name })} />
                 <Button title= "Fav" onPress={() => favouriteController.addToFavouriteList(this.props.name)} />
             </View>
@@ -22,6 +22,6 @@ export default class PickRestaurantListView extends React.Component {
     }
 }
 
-PickRestaurantListView.propTypes = {name: PropTypes.string.isRequired, navFunc: PropTypes.func.isRequired};
+RandomizeRestaurantListView.propTypes = {name: PropTypes.string.isRequired, navFunc: PropTypes.func.isRequired};
 
-// THIS VIEW IS FOR SELECT PAGE. RESTAURANT TO BE PICKED FOR RANDOMIZE LIST
+// THIS VIEW IS FOR RANDOMIZER PAGE. RESTAURANTS THAT ARE RANDOMLY PICKED FROM.

@@ -34,16 +34,19 @@ export default class SelectController {
             this.location = lat+","+long;
             loc = lat+","+long;
             console.log("*"+this.location);
-            return loc;
+            return this.location;
             
           },
           error => Alert.alert(error.message),
                 { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         );
+        //console.log(loc);
+        //return location;
     };
 
     //Param: location in string from of lat,long
     getRestaurantList(location) {
+        //location = this.location;
         console.log("HELLO")
         console.log(location)
 
@@ -53,7 +56,7 @@ export default class SelectController {
         }
 
         //var key = process.env.GOOGLE_API_KEY;
-        var key = 
+        var key;
 
         var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key='+key;
         console.log(httpString);
