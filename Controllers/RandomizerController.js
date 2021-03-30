@@ -17,6 +17,7 @@ export default class RandomizerController {
         return this.winner;
     }
 
+    // possibly useless
     getWinnerName() {
         return this.winner.key;
     }
@@ -46,15 +47,30 @@ export default class RandomizerController {
         this.randomizerList.push(rest);
         console.log(this.randomizerList);
         //restObjList.push(rest);
-
     }
 
     randomize() {
+        if(this.randomizerList.length == 0) {
+            console.log("No restaurants selected");
+            this.winner = null;
+            return null;
+        }
         const randomIndex = Math.floor(Math.random() * this.randomizerList.length);
         var randomWinner = this.randomizerList[randomIndex];
         console.log(randomWinner);
         this.setWinner(randomWinner);
         console.log(this.getWinnerName())
+        return this.winner.key;
+    }
+
+    removeFromRandomize(restaurantName) {
+        console.log("Removing "+restaurantName);
+        for (var i = 0; i < this.randomizerList.length; i++) {
+            if(restaurantName == this.randomizerList[i].key) {
+                this.randomizerList.splice(i,1);
+            }
+        }
+        console.log(this.randomizerList);
     }
     
 }

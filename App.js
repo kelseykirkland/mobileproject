@@ -33,7 +33,7 @@ export default class App extends React.Component{
 			<NavigationContainer>
 				<Stack.Navigator>
 					<Stack.Screen name = "Home" component={HomeView} initialParams={{state: this.state}}/>
-					<Stack.Screen name = "Favourite" component={FavouriteView} initialParams={{state: this.state}}/>
+					<Stack.Screen name = "Favourites" component={FavouriteView} initialParams={{state: this.state}}/>
 					<Stack.Screen name = "Location" component={LocationView} initialParams={{state: this.state}}/>
 					<Stack.Screen name = "Select" component= {SelectView} initialParams={{state: this.state}}/>
 					<Stack.Screen name = "Randomizer" component={RandomizeView} initialParams={{state: this.state}}/>

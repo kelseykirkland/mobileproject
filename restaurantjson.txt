@@ -1,0 +1,46 @@
+{
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 43.5215161,
+               "lng" : -80.2126256
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 43.52285313029149,
+                  "lng" : -80.2112517697085
+               },
+               "southwest" : {
+                  "lat" : 43.5201551697085,
+                  "lng" : -80.2139497302915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "name" : "Tim Hortons",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/113664309233820834071\"\u003eRon Dutton\u003c/a\u003e"
+               ],
+               "photo_reference" : "ATtYBwITgNLEj3Ld3ps9ey5ffm0FV_uPzWiqmNlXp_XS_Udm5NKZ0KASc4TAO_oeBE5749DD1YQ4DbH_p8uAiQtprUkkLJi20LGFzAaHsemDJ4C04DVoDfwSo0KrLK7Y5TwdyF7QNonyjHeS4s3LcX-54KGIePZZl4o5Ufsa31L00YqOYWVF",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJsQ-E_sqEK4gRur_dZJGzG34",
+         "plus_code" : {
+            "compound_code" : "GQCP+JW Guelph, ON, Canada",
+            "global_code" : "86MXGQCP+JW"
+         },
+         "price_level" : 1,
+         "rating" : 3.8,
+         "reference" : "ChIJsQ-E_sqEK4gRur_dZJGzG34",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 446,
+         "vicinity" : "987 Gordon Street, Guelph"
+      },
