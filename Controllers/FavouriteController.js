@@ -16,6 +16,7 @@ export default class FavouriteController {
 
     //This is a function used for testing if the favourite list being changed will reflect
     //in the view.
+    // i don't think we use this
     setFavouriteList() {
         this.favouriteList = [{key: "Alpha"}, {key: "Beta"}, {key: "Charlie"}];
     }
@@ -26,8 +27,8 @@ export default class FavouriteController {
 
     addToFavouriteList(restaurant) {
         console.log(restaurant);
-        var rest = {key: restaurant};
-        this.favouriteList.push(rest);
+        //var rest = {name: restaurant};
+        this.favouriteList.push(restaurant);
         console.log(this.favouriteList);  
     }
 
@@ -39,6 +40,31 @@ export default class FavouriteController {
             }
         }
         console.log(this.favouriteList);
+    }
+
+    getRestaurantName(restaurant) {
+        console.log(restaurant.name);
+        return restaurant.name;
+    }
+
+    getRestaurantVicinity(restaurant) {
+        console.log(restaurant.vicinity);
+        return restaurant.vicinity;
+    }
+
+    getRestaurantRating(restaurant) {
+        console.log(restaurant.rating);
+        return restaurant.rating;
+    }
+
+    getRestaurantUserRatingTotal(restaurant) {
+        console.log(restaurant.user_ratings_total);
+        return restaurant.user_ratings_total;
+    }
+
+    getRestaurantPriceLevel(restaurant) {
+        console.log(restaurant.price_level);
+        return restaurant.price_level;
     }
 }
 

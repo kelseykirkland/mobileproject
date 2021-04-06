@@ -21,7 +21,7 @@ export default class FavouriteView extends Component {
                     <FlatList 
                         data={favouriteController.getFavouriteList()}
                         renderItem={({item}) => (
-                            <RestaurantListView name={item.key} navFunc={this.props.navigation.navigate} />
+                            <RestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} />
                         )}
                     />
                 </View>

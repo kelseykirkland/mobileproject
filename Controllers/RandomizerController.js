@@ -19,7 +19,7 @@ export default class RandomizerController {
 
     // possibly useless
     getWinnerName() {
-        return this.winner.key;
+        return this.winner.name;
     }
 
     clearWinner() {
@@ -43,8 +43,8 @@ export default class RandomizerController {
 
     addRestaurant(restaurant) {
         console.log(restaurant);
-        var rest = {key: restaurant};
-        this.randomizerList.push(rest);
+        // var rest = {name: restaurant};
+        this.randomizerList.push(restaurant);
         console.log(this.randomizerList);
         //restObjList.push(rest);
     }
@@ -59,14 +59,14 @@ export default class RandomizerController {
         var randomWinner = this.randomizerList[randomIndex];
         console.log(randomWinner);
         this.setWinner(randomWinner);
-        console.log(this.getWinnerName())
-        return this.winner.key;
+        console.log(this.getWinnerName());
+        return this.winner.name;
     }
 
     removeFromRandomize(restaurantName) {
         console.log("Removing "+restaurantName);
         for (var i = 0; i < this.randomizerList.length; i++) {
-            if(restaurantName == this.randomizerList[i].key) {
+            if(restaurantName == this.randomizerList[i].name) {
                 this.randomizerList.splice(i,1);
             }
         }

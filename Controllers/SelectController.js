@@ -3,8 +3,14 @@ export default class SelectController {
 
     location = null;
 
-    selectList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
-    {key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
+    // selectList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
+    // {key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
+
+    // key = place_id;
+    selectList = [{"name": "Mcd", "vicinity": "123 this place", key: "ChIJsQ-E_sqEK4gRur_dZJGzG34", "rating": 1.1, "user_ratings_total": 100, "price_level": 1}, 
+    {"name": "Wendys ", "vicinity": "456 that place", key: "ChIJsQ-E", "rating": 2.2, "user_ratings_total": 200, "price_level": 2},
+    {"name": "A&W", "vicinity": "123 that other place", key: "dZJGzG34", "rating": 3.3, "user_ratings_total": 300, "price_level": 3 },
+    {"name": "5 Guys", "vicinity": "1001 Happy place", key: "sqEK4gRur", "rating": 4.4, "user_ratings_total": 400, "price_level": 4 }];
 
     getSelectList() {
         return this.selectList;
@@ -55,7 +61,7 @@ export default class SelectController {
             return;
         }
 
-        //var key = process.env.GOOGLE_API_KEY;
+        // add api key here, take out to push to github
         var key;
 
         var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key='+key;
@@ -84,7 +90,9 @@ export default class SelectController {
         for (let i = 0; i < data.results.length; i++) {
             //console.log(data.results[i].name);
             restList.push(data.results[i].name);
-            var rest = {key: data.results[i].name}
+            var rest = {"name": data.results[i].name, "vicinity": data.results[i].vicinity, key: data.results[i].place_id,
+                        "rating": data.results[i].rating, "user_ratings_total": data.results[i].user_ratings_total, "price_level": data.results[i].price_level, 
+                        "open": data.results[i].opening_hours, "types": data.results[i].types}
             restObjList.push(rest)
         }
         //console.log(restList);
