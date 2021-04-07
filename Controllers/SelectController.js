@@ -62,7 +62,7 @@ export default class SelectController {
         }
 
         // add api key here, take out to push to github
-        var key;
+        var key = "AIzaSyA2JnTjuHyqt0y66VqMx9rdUt93kSXhz_I";
 
         var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key='+key;
         console.log(httpString);
