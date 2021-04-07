@@ -7,23 +7,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class FavouriteController {
-   favouriteList = [];
+   favouriteList = new Array;
 
     //Create a constructor or oncreate/onload that will check the 
     //async memory for a saved list and populate favourite list with it.
     constructor() {
         this.favouritesList = [];
-        this.retrieveData();
     }
-
-    // Object {
-    //     "key": "RaNdOm-S",
-    //     "name": "restaurant_name",
-    //     "price_level": 0,
-    //     "rating": 6.9,
-    //     "user_ratings_total": 420,
-    //     "vicinity": "place",
-    // }
 
     retrieveData = async () => {
         try {
@@ -96,12 +86,20 @@ export default class FavouriteController {
 
     addToFavouriteList(restaurant) {
         console.log(restaurant);
-        //var rest = {name: restaurant};
-        this.favouriteList.push(restaurant);
-        console.log(this.favouriteList);  
+        found = 0;
+        for (var i = 0; i < this.favouriteList.length; i++) {
+            if(this.favouriteList[i].key == restaurant.key) {
+                found = 1;
+            }    
+        }
+        if(found == 0) {
+            this.favouriteList.push(restaurant);
+            console.log(this.favouriteList);  
 
-        //When add to favourite list, also add to Async storage
-        this.storeData(restaurant);
+            //When add to favourite list, also add to Async storage
+            this.storeData(restaurant);
+        }
+        
     }
 
     removeFromFavourites(restaurant) {

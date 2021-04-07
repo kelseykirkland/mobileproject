@@ -21,6 +21,3 @@ export default class RestaurantListView extends React.Component {
 }
 
 RestaurantListView.propTypes = {name: PropTypes.string.isRequired, navFunc: PropTypes.func.isRequired, restaurant: PropTypes.object.isRequired};
-
-// THIS LIST VIEW IS FOR THE FAVOURITES PAGE
-// i think?

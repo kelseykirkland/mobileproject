@@ -11,13 +11,14 @@ export default class WinnerView extends React.Component{
     }
 
     render() {
+        winner = randomizerController.randomize();
         return(
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
                 <Text>Winner!</Text> 
-                <Text> {randomizerController.randomize()} </Text>
+                <Text> {winner.name} </Text>
                 <Button title= "Home" onPress={() => this.props.navigation.navigate("Home")} />
-                <Button title= "Spin Again" onPress={() => { randomizerController.removeFromRandomize(randomizerController.getWinnerName()); this.props.navigation.navigate("Randomizer")}}/>
-                <Button title= "Add to favourites" onPress={() => favouriteController.addToFavouriteList(randomizerController.getWinnerName())} />
+                <Button title= "Spin Again" onPress={() => { randomizerController.removeFromRandomize(winner.name); this.props.navigation.navigate("Randomizer")}}/>
+                <Button title= "Add to favourites" onPress={() => favouriteController.addToFavouriteList(winner)} />
             </View>
         );
     }

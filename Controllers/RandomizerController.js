@@ -3,7 +3,7 @@ export default class RandomizerController {
 
     location = null;
     winner = null;
-    randomizerList = [];
+    randomizerList = new Array;
 
     getRandomizerList() {
         return  this.randomizerList;
@@ -60,7 +60,7 @@ export default class RandomizerController {
         console.log(randomWinner);
         this.setWinner(randomWinner);
         console.log(this.getWinnerName());
-        return this.winner.name;
+        return this.winner;
     }
 
     removeFromRandomize(restaurantName) {
