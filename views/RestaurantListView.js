@@ -14,13 +14,10 @@ export default class RestaurantListView extends React.Component {
             <View style={{Height: 50, borderColor: 'Black', borderBottomWidth: 1, borderTopWidth: 1, borderLeftWidth: 1, borderRightWidth: 1}}>
                 <Text> {this.props.name} </Text>
                 <Button title= "Info" onPress={() => this.props.navFunc("Restaurant", { name: this.props.name, restaurant: this.props.restaurant })} />
-                <Button title= "Remove" onPress={() => favouriteController.removeFromFavourites(this.props.name)} />
+                <Button title= "Remove" onPress={() => favouriteController.removeFromFavourites(this.props.restaurant)} />
             </View>
         );
     }
 }
 
 RestaurantListView.propTypes = {name: PropTypes.string.isRequired, navFunc: PropTypes.func.isRequired, restaurant: PropTypes.object.isRequired};
-
-// THIS LIST VIEW IS FOR THE FAVOURITES PAGE
-// i think?

@@ -22,11 +22,19 @@ const Stack = createStackNavigator();
 
 export default class App extends React.Component{
 
-	state = {
-		favouriteController: new FavouriteController(),
-		selectController: new SelectController(),
-		randomizerContoller: new RandomizerController(),
+	constructor(props) {
+		super(props);
+		this.state = {
+			favouriteController: new FavouriteController(),
+			selectController: new SelectController(),
+			randomizerContoller: new RandomizerController(),
+		} 
 	}
+
+	componentDidMount() {
+		this.state.favouriteController.retrieveData();
+	}
+	
 
 	render(){
 		return (

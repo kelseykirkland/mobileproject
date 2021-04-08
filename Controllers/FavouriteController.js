@@ -4,11 +4,69 @@
 //
 // The objects will have the information that is gotten from the 
 // restaurants that are a resultant of the favourite list.
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class FavouriteController {
-    // favouriteList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
-    // {key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
-    favouriteList = [];
+   favouriteList = new Array;
+
+    //Create a constructor or oncreate/onload that will check the 
+    //async memory for a saved list and populate favourite list with it.
+    constructor() {
+        this.favouritesList = [];
+    }
+
+    retrieveData = async () => {
+        try {
+            AsyncStorage.getAllKeys((err, keys) => {
+                AsyncStorage.multiGet(keys, (err, stores) => {
+                  stores.map((result, i, store) => {
+                    this.favouriteList.push(JSON.parse(store[i][1]));
+                  });
+                });
+              });
+        } catch (error) {
+            console.log("Error retrieving AsyncStorage data:");
+            console.log(error);
+        }
+    };
+
+    storeData = async (restaurant) => {
+		try {
+		  await AsyncStorage.setItem(
+			restaurant.key,
+			JSON.stringify(restaurant)
+		  );
+		} catch (error) {
+		  // Error saving data
+          console.log("Error storing AsyncStorage data:");
+          console.log(error);
+		}
+	};
+
+    removeData = async (restaurantKey, index) => {
+		try {
+		  await AsyncStorage.removeItem(
+			restaurantKey, () => {
+            });
+		} catch (error) {
+		  // Error saving data
+          console.log("Error removing AsyncStorage data:");
+          console.log(error);
+		}
+	};
+
+    clearData = async () => {
+        try {
+            AsyncStorage.getAllKeys((err, keys) => {
+                AsyncStorage.multiRemove(keys, (err) => {
+                    //Should remove all keys
+                });
+              });
+        } catch (error) {
+            console.log("Error clearing AsyncStorage data:");
+            console.log(error);
+        }
+    };
 
     getFavouriteList() {
         return this.favouriteList;
@@ -23,19 +81,34 @@ export default class FavouriteController {
 
     clearFavouriteList() {
         this.favouritesList = [];
+        this.clearData();
     }
 
     addToFavouriteList(restaurant) {
         console.log(restaurant);
-        //var rest = {name: restaurant};
-        this.favouriteList.push(restaurant);
-        console.log(this.favouriteList);  
+        found = 0;
+        for (var i = 0; i < this.favouriteList.length; i++) {
+            if(this.favouriteList[i].key == restaurant.key) {
+                found = 1;
+            }    
+        }
+        if(found == 0) {
+            this.favouriteList.push(restaurant);
+            console.log(this.favouriteList);  
+
+            //When add to favourite list, also add to Async storage
+            this.storeData(restaurant);
+        }
+        
     }
 
-    removeFromFavourites(restaurantName) {
-        console.log("Removing "+restaurantName);
+    removeFromFavourites(restaurant) {
+        console.log("Removing "+restaurant.name);
         for (var i = 0; i < this.favouriteList.length; i++) {
-            if(restaurantName == this.favouriteList[i].key) {
+            if(restaurant.name == this.favouriteList[i].name) {
+                //When remove from favourite list, also remove from Async storage
+                console.log(this.favouriteList[i]);
+                this.removeData(this.favouriteList[i].key, i); 
                 this.favouriteList.splice(i,1);
             }
         }

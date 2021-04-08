@@ -5,7 +5,6 @@ import { Button, Text, View } from 'react-native';
 //Testing import
 //This is a function used for testing if the favourite/select list being changed will reflect
 //in the view.
-import { selectController } from './../Controllers/SelectController.js';
 
 export default class HomeView extends React.Component{
     constructor(props) {
