@@ -19,7 +19,7 @@ export default class SelectView extends React.Component {
                     <FlatList 
                         data={this.props.route.params.state.selectController.getSelectList()}
                         renderItem={({item}) => (
-                            <PickRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} />
+                            <PickRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController}/>
                         )}
                     />
                 </View>

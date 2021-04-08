@@ -17,8 +17,6 @@ export default class HomeView extends React.Component{
                 <Text>The Amazing Restaurant Picker!</Text> 
                 <Button title= "Find Restaurants!" onPress={() => this.props.navigation.navigate("Location")} />
                 <Button title= "Favourites" onPress={() => this.props.navigation.navigate("Favourites")} />
-                {/* <Button title= "Change FavouriteList" onPress={() => this.props.route.params.state.favouriteController.setFavouriteList()} />
-                <Button title= "Change SelectList" onPress={() => this.props.route.params.state.selectController.setSelectList()} /> */}
             </View>
         );
     }

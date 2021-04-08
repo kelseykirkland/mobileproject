@@ -18,7 +18,7 @@ export default class WinnerView extends React.Component{
                 <Text> {winner.name} </Text>
                 <Button title= "Home" onPress={() => this.props.navigation.navigate("Home")} />
                 <Button title= "Spin Again" onPress={() => { randomizerController.removeFromRandomize(winner.name); this.props.navigation.navigate("Randomizer")}}/>
-                <Button title= "Add to favourites" onPress={() => favouriteController.addToFavouriteList(winner)} />
+                <Button title= "Add to favourites" onPress={() => this.props.route.params.state.favouriteController.addToFavouriteList(winner)} />
             </View>
         );
     }

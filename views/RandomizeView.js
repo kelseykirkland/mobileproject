@@ -31,7 +31,7 @@ export default class RandomizeView extends React.Component{
                     <FlatList 
                         data={randoList}
                         renderItem={({item}) => (
-                            <RandomizeRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} />
+                            <RandomizeRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController}/>
                         )}
                     />
                 </View>

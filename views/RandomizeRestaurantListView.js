@@ -16,12 +16,17 @@ export default class RandomizeRestaurantListView extends React.Component {
                 <Text> {this.props.name} </Text>
                 <Button title= "Remove" onPress={() => randomizerController.removeFromRandomize(this.props.name)} />
                 <Button title= "Info" onPress={() => this.props.navFunc("Restaurant", { name: this.props.name, restaurant: this.props.restaurant})} />
-                <Button title= "Fav" onPress={() => favouriteController.addToFavouriteList(this.props.restaurant)} />
+                <Button title= "Fav" onPress={() => this.props.favouriteController.addToFavouriteList(this.props.restaurant)} />
             </View>
         );
     }
 }
 
-RandomizeRestaurantListView.propTypes = {name: PropTypes.string.isRequired, navFunc: PropTypes.func.isRequired, restaurant: PropTypes.object.isRequired};
+RandomizeRestaurantListView.propTypes = {
+    name: PropTypes.string.isRequired, 
+    navFunc: PropTypes.func.isRequired, 
+    restaurant: PropTypes.object.isRequired, 
+    favouriteController: PropTypes.object.isRequired
+};
 
 // THIS VIEW IS FOR RANDOMIZER PAGE. RESTAURANTS THAT ARE RANDOMLY PICKED FROM.

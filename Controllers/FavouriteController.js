@@ -46,8 +46,7 @@ export default class FavouriteController {
     removeData = async (restaurantKey, index) => {
 		try {
 		  await AsyncStorage.removeItem(
-			restaurantKey, () => {
-            });
+			restaurantKey, () => {});
 		} catch (error) {
 		  // Error saving data
           console.log("Error removing AsyncStorage data:");

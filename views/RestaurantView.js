@@ -13,9 +13,9 @@ export default class RestaurantView extends React.Component {
         return(
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
                 <Text>{this.props.route.params.name}</Text> 
-                <Text> {favouriteController.getRestaurantVicinity(this.props.route.params.restaurant)} </Text>
-                <Text> Rating: {favouriteController.getRestaurantRating(this.props.route.params.restaurant)} with {favouriteController.getRestaurantUserRatingTotal(this.props.route.params.restaurant)} reviews </Text>
-                <Text> Price Level {favouriteController.getRestaurantPriceLevel(this.props.route.params.restaurant)} </Text>
+                <Text> {this.props.route.params.state.favouriteController.getRestaurantVicinity(this.props.route.params.restaurant)} </Text>
+                <Text> Rating: {this.props.route.params.state.favouriteController.getRestaurantRating(this.props.route.params.restaurant)} with {this.props.route.params.state.favouriteController.getRestaurantUserRatingTotal(this.props.route.params.restaurant)} reviews </Text>
+                <Text> Price Level {this.props.route.params.state.favouriteController.getRestaurantPriceLevel(this.props.route.params.restaurant)} </Text>
                 <Text>Dog Woof woof</Text>
             </View>
         );

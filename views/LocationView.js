@@ -35,7 +35,7 @@ export default class LocationView extends React.Component{
                 { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         );
     };
-
+    
     render() {
         return (
             <View style={{flex: 1, alignItems: "center"}}>
