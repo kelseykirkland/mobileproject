@@ -40,11 +40,8 @@ export default class LocationView extends React.Component{
         return (
             <View style={{flex: 1, alignItems: "center"}}>
                 <Text>Finding Your Location...</Text> 
-                {/* <Button title="Get Location!"
-                   onPress={this.getCoordinates()}/>  */}
                 <Text onPress={this.getCoordinates()}> Location: </Text>
                 <Text>{this.state.location}</Text>
-                {/* <Text>{this.props.route.params.state.selectController.getCoordinates()}</Text> */}
                 <Button title="Try"
                    onPress={() => this.props.route.params.state.selectController.getRestaurantList(this.state.location)}/>
                 <Button title= "Confirm" onPress={() => this.props.navigation.navigate("Select")} />

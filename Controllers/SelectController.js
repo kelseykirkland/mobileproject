@@ -1,12 +1,7 @@
+import apikey from './../apikey.js';
 
 export default class SelectController {
 
-    location = null;
-
-    // selectList = [{key: "Harveys"}, {key: "McD"}, {key: "Wendys"}, {key: "Tims"}, {key: "A&W"}, {key: "5Guy"}, {key: "Burger Priest"}, {key: "Subway"}, 
-    // {key: "Doninos"}, {key: "Pizza Hut"}, {key: "Little Ceasers"}, {key: "Montanas"}, {key: "TJ"}, {key: "Boston Pizza"}, {key: "Dairy Queen"}, {key: "StarBucks"}];
-
-    // key = place_id;
     selectList = [{"name": "Mcd", "vicinity": "123 this place", key: "ChIJsQ-E_sqEK4gRur_dZJGzG34", "rating": 1.1, "user_ratings_total": 100, "price_level": 1}, 
     {"name": "Wendys ", "vicinity": "456 that place", key: "ChIJsQ-E", "rating": 2.2, "user_ratings_total": 200, "price_level": 2},
     {"name": "A&W", "vicinity": "123 that other place", key: "dZJGzG34", "rating": 3.3, "user_ratings_total": 300, "price_level": 3 },
@@ -24,35 +19,14 @@ export default class SelectController {
     // Param: array of restraunt object like select list
     setSelectList(data) {
         //this.selectList = [{key: "Delta"}, {key: "Echo"}, {key: "Fox"}];
+        this.clearSelectList();
         this.selectList = data;
         console.log("SELECT LIST");
         console.log(this.selectList);
     }
 
-    getCoordinates = () => {
-        var loc;
-        navigator.geolocation.getCurrentPosition(
-          position => { 
-            const long = JSON.stringify(position.coords.longitude);
-            const lat = JSON.stringify(position.coords.latitude);
-            //this.longitude = long;
-            //this.latitude = lat;
-            this.location = lat+","+long;
-            loc = lat+","+long;
-            console.log("*"+this.location);
-            return this.location;
-            
-          },
-          error => Alert.alert(error.message),
-                { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-        );
-        //console.log(loc);
-        //return location;
-    };
-
     //Param: location in string from of lat,long
     getRestaurantList(location) {
-        //location = this.location;
         console.log("HELLO")
         console.log(location)
 
@@ -62,7 +36,7 @@ export default class SelectController {
         }
 
         // add api key here, take out to push to github
-        var key;
+        var key = apikey.apikey;
 
         var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key='+key;
         console.log(httpString);
