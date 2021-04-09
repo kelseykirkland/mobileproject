@@ -5,6 +5,7 @@
 // The objects will have the information that is gotten from the 
 // restaurants that are a resultant of the favourite list.
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import apikey from './../apikey.js';
 
 export default class FavouriteController {
    favouriteList = new Array;
@@ -85,7 +86,7 @@ export default class FavouriteController {
 
     addToFavouriteList(restaurant) {
         console.log(restaurant);
-        found = 0;
+        var found = 0;
         for (var i = 0; i < this.favouriteList.length; i++) {
             if(this.favouriteList[i].key == restaurant.key) {
                 found = 1;
@@ -137,6 +138,28 @@ export default class FavouriteController {
     getRestaurantPriceLevel(restaurant) {
         console.log(restaurant.price_level);
         return restaurant.price_level;
+    }
+    
+    // i dont like this yet
+    getTypeList(restaurant) {
+        var typeList = restaurant.types.toString();
+        var typeString = "";
+        for(var i = 0; i < restaurant.types.length; i++ ) {
+            typeString = typeString+" "+restaurant.types[i];
+        }
+        console.log(typeString);
+        return typeString;
+    }
+
+    getOpenNow(restaurant) {
+        if(restaurant.open.open_now) {
+            console.log("open");
+            return "OPEN";
+        } else if (!restaurant.open.open_now) {
+            console.log("closed")
+            return "CLOSED";
+
+        }
     }
 }
 

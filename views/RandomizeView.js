@@ -4,6 +4,7 @@ import { Button, Text, View, FlatList, Alert } from 'react-native';
 import RestaurantListView from './RestaurantListView.js';
 import RandomizeRestaurantListView from './RandomizeRestaurantListView.js';
 
+import { styles } from './styles.js'
 import { randomizerController } from './../Controllers/RandomizerController.js';
 
 export default class RandomizeView extends React.Component{
@@ -17,8 +18,8 @@ export default class RandomizeView extends React.Component{
         console.log(randoList.length);
         console.log("dog");
         return(
-            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                <Text>Randomizer Page</Text> 
+            <View style={styles.container}>
+                <Text style={styles.instructions}>These are the restaurants you picked! When you're ready, hit Randomize! to pick one!</Text> 
                 <Button title= "Randomize!" onPress={() => {
                     if(randoList.length > 0) {
                         this.props.navigation.navigate("Winner");
@@ -27,11 +28,11 @@ export default class RandomizeView extends React.Component{
                     }
                 }} />
                 <Button title= "Clear List" onPress={() => randomizerController.clearRandomizerList()} />
-                <View style={{height: 200}}>
+                <View style={styles.container}>
                     <FlatList 
                         data={randoList}
                         renderItem={({item}) => (
-                            <RandomizeRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController}/>
+                            <RandomizeRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController} randomizerController={this.props.route.params.state.randomizerController}/>
                         )}
                     />
                 </View>
