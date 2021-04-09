@@ -12,6 +12,7 @@ export default class PickRestaurantListView extends React.Component {
 
     constructor(props) {
         super(props);
+        //prob should be this.props.pos? maybe
         this.pos = new Animated.ValueXY();
         this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
@@ -31,9 +32,11 @@ export default class PickRestaurantListView extends React.Component {
                 console.log("LIKE");
                 Animated.spring(this.pos, {toValue: { x: (1 * this.screenWidth), y: 0 }, useNativeDriver: false}).start();
                 randomizerController.addRestaurant(this.props.restaurant);
+                this.props.selectController.removeFromSelect(this.props.restaurant);
               } else if(this.pos.x._value < this.leftSubmitPoint) {
                 console.log("DO NOT LIKE");
                 Animated.spring(this.pos, {toValue: { x: (-1 * this.screenWidth), y: 0 }, useNativeDriver: false}).start();
+                this.props.selectController.removeFromSelect(this.props.restaurant);
               } else {
                 console.log("MOVE MORE");
                 Animated.spring(this.pos, {toValue: { x: 0, y: 0 }, useNativeDriver: false}).start();
@@ -60,7 +63,8 @@ PickRestaurantListView.propTypes = {
     name: PropTypes.string.isRequired, 
     navFunc: PropTypes.func.isRequired, 
     restaurant: PropTypes.object.isRequired,
-    favouriteController: PropTypes.object.isRequired
+    favouriteController: PropTypes.object.isRequired,
+    selectController: PropTypes.object.isRequired
 };
 
 // THIS VIEW IS FOR SELECT PAGE. RESTAURANT TO BE PICKED FOR RANDOMIZE LIST

@@ -15,10 +15,18 @@ export default class SelectController {
         this.selectList = [];
     }
 
+    removeFromSelect(restaurant) {
+        console.log("Removing from select: "+ restaurant.name);
+        for (var i = 0; i < this.selectList.length; i++) {
+            if(restaurant.key == this.selectList[i].key) {
+                this.selectList.splice(i,1);
+            }
+        }
+    }
+
     // Sets the select list
     // Param: array of restraunt object like select list
     setSelectList(data) {
-        //this.selectList = [{key: "Delta"}, {key: "Echo"}, {key: "Fox"}];
         this.clearSelectList();
         this.selectList = data;
         console.log("SELECT LIST");

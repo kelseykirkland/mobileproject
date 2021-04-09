@@ -104,7 +104,7 @@ export default class FavouriteController {
     removeFromFavourites(restaurant) {
         console.log("Removing "+restaurant.name);
         for (var i = 0; i < this.favouriteList.length; i++) {
-            if(restaurant.name == this.favouriteList[i].name) {
+            if(restaurant.key == this.favouriteList[i].key) {
                 //When remove from favourite list, also remove from Async storage
                 console.log(this.favouriteList[i]);
                 this.removeData(this.favouriteList[i].key, i); 

@@ -16,11 +16,12 @@ export default class FavouriteView extends Component {
         return(
             <View>
                 <Text>Favourite Page</Text> 
-                <View style={{height: 200}}>
+                <View>
                     <FlatList 
                         data={this.props.route.params.state.favouriteController.getFavouriteList()}
+                        //extraData={this.state.refresh}
                         renderItem={({item}) => (
-                            <RestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController} />
+                            <RestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController}/>
                         )}
                     />
                 </View>
