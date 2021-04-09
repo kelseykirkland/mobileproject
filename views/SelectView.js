@@ -15,7 +15,7 @@ export default class SelectView extends React.Component {
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
                 <Text>New Select Page</Text> 
                 <Button title= "Confirm" onPress={() => this.props.navigation.navigate("Randomizer")} />
-                <View style={{height: 200}}>
+                <View>
                     <FlatList 
                         data={this.props.route.params.state.selectController.getSelectList()}
                         renderItem={({item}) => (
