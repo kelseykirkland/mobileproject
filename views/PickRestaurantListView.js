@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Text, View, Animated, PanResponder, Dimensions } from 'react-native';
 import PropTypes from 'prop-types'
 
+import { styles } from './styles.js'
 import { randomizerController } from './../Controllers/RandomizerController.js';
 import { favouriteController } from './../Controllers/FavouriteController.js';
 
@@ -49,10 +50,12 @@ export default class PickRestaurantListView extends React.Component {
     render () {
         return (
             <Animated.View style={{transform: [{ translateX: this.pos.x }, { translateY: this.pos.y }] }} {...this.panResponder.panHandlers}>
-                <View style={{Height: 50, borderColor: 'Black', borderBottomWidth: 1, borderTopWidth: 1, borderLeftWidth: 1, borderRightWidth: 1}}>
-                    <Text> {this.props.name} </Text>
+                <View style={styles.listItem}>
+                    <Text style={styles.listText}> {this.props.name} </Text>
+                    <Text>
                     <Button title= "Info" onPress={() => this.props.navFunc("Restaurant", { name: this.props.name, restaurant: this.props.restaurant })} />
                     <Button title= "Fav" onPress={() => this.props.favouriteController.addToFavouriteList(this.props.restaurant)} />
+                    </Text>
                 </View>
             </Animated.View>
         );

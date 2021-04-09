@@ -2,6 +2,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
+import { styles } from './styles.js'
 import { favouriteController } from './../Controllers/FavouriteController.js';
 
 export default class RestaurantView extends React.Component {
@@ -11,12 +12,13 @@ export default class RestaurantView extends React.Component {
     
     render() {
         return(
-            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                <Text>{this.props.route.params.name}</Text> 
-                <Text> {this.props.route.params.state.favouriteController.getRestaurantVicinity(this.props.route.params.restaurant)} </Text>
-                <Text> Rating: {this.props.route.params.state.favouriteController.getRestaurantRating(this.props.route.params.restaurant)} with {this.props.route.params.state.favouriteController.getRestaurantUserRatingTotal(this.props.route.params.restaurant)} reviews </Text>
-                <Text> Price Level {this.props.route.params.state.favouriteController.getRestaurantPriceLevel(this.props.route.params.restaurant)} </Text>
-                <Text>Dog Woof woof</Text>
+            <View style={styles.infoContainer}>
+                <Text style= {styles.bigTitle}>{this.props.route.params.name}</Text> 
+                <Text style= {styles.address}> {this.props.route.params.state.favouriteController.getOpenNow(this.props.route.params.restaurant)} </Text>
+                <Text style= {styles.address}> {this.props.route.params.state.favouriteController.getRestaurantVicinity(this.props.route.params.restaurant)} </Text>
+                <Text style= {styles.smallTitle}> Rating: <Text style= {styles.infoBit}>{this.props.route.params.state.favouriteController.getRestaurantRating(this.props.route.params.restaurant)} </Text> 
+                <Text>stars with <Text style= {styles.infoBit}>{this.props.route.params.state.favouriteController.getRestaurantUserRatingTotal(this.props.route.params.restaurant)} </Text>reviews </Text> </Text>
+                <Text style= {styles.priceLevel}> Price Level: <Text style= {styles.infoBit}>{this.props.route.params.state.favouriteController.getRestaurantPriceLevel(this.props.route.params.restaurant)} </Text> </Text>
             </View>
         );
     }
