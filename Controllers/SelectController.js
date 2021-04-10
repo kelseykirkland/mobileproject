@@ -29,14 +29,21 @@ export default class SelectController {
     setSelectList(data) {
         this.clearSelectList();
         this.selectList = data;
-        console.log("SELECT LIST");
-        console.log(this.selectList);
+        // console.log("SELECT LIST");
+        // console.log(this.selectList);
     }
 
     //Param: location in string from of lat,long
-    getRestaurantList(location) {
+    getRestaurantList(location, radius) {
         console.log("HELLO")
         console.log(location)
+
+        console.log("RADIUS: "+radius);
+
+        //var radiusNum = radius.toString();
+        radius = radius * 1000;
+        console.log("RADIUS: "+radius);
+
 
         if(location == null) {
             console.log("location is null: "+location);
@@ -46,7 +53,7 @@ export default class SelectController {
         // add api key here, take out to push to github
         var key = apikey.apikey;
 
-        var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key='+key;
+        var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius='+radius+'&type=restaurant&key='+key;
         console.log(httpString);
         
         let request = new XMLHttpRequest();
