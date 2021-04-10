@@ -27,7 +27,7 @@ export default class App extends React.Component{
 		this.state = {
 			favouriteController: new FavouriteController(),
 			selectController: new SelectController(),
-			randomizerContoller: new RandomizerController(),
+			randomizerController: new RandomizerController(),
 		} 
 	}
 

@@ -5,7 +5,6 @@
 // The objects will have the information that is gotten from the 
 // restaurants that are a resultant of the favourite list.
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import apikey from './../apikey.js';
 
 export default class FavouriteController {
    favouriteList = new Array;
@@ -13,7 +12,7 @@ export default class FavouriteController {
     //Create a constructor or oncreate/onload that will check the 
     //async memory for a saved list and populate favourite list with it.
     constructor() {
-        this.favouritesList = [];
+        this.favouriteList = [];
     }
 
     retrieveData = async () => {

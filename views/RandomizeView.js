@@ -12,11 +12,17 @@ export default class RandomizeView extends React.Component{
         super(props);
     }
 
+    state = {
+        refresh: true
+    }
+
+    refresh() {
+        this.setState(({ refresh }) => ({ refresh: !refresh }));
+    }
+
     render() {
         console.log("randomizer List:\n");
-        randoList = randomizerController.getRandomizerList();
-        console.log(randoList.length);
-        console.log("dog");
+        randoList = this.props.route.params.state.randomizerController.getRandomizerList();
         return(
             <View style={styles.container}>
                 <Text style={styles.instructions}>These are the restaurants you picked! When you're ready, hit Randomize! to pick one!</Text> 
@@ -31,8 +37,9 @@ export default class RandomizeView extends React.Component{
                 <View style={styles.container}>
                     <FlatList 
                         data={randoList}
+                        extraData={this.state.refresh}
                         renderItem={({item}) => (
-                            <RandomizeRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController} randomizerController={this.props.route.params.state.randomizerController}/>
+                            <RandomizeRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController} randomizerController={this.props.route.params.state.randomizerController} refresh={this.refresh.bind(this)}/>
                         )}
                     />
                 </View>
