@@ -3,8 +3,6 @@ import { Button, Text, View, Animated, PanResponder, Dimensions } from 'react-na
 import PropTypes from 'prop-types'
 
 import { styles } from './styles.js'
-import { randomizerController } from './../Controllers/RandomizerController.js';
-import { favouriteController } from './../Controllers/FavouriteController.js';
 
 export default class PickRestaurantListView extends React.Component {
     screenWidth = Dimensions.get('window').width;

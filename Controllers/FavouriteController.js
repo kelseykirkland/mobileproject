@@ -138,17 +138,6 @@ export default class FavouriteController {
         console.log(restaurant.price_level);
         return restaurant.price_level;
     }
-    
-    // i dont like this yet
-    getTypeList(restaurant) {
-        var typeList = restaurant.types.toString();
-        var typeString = "";
-        for(var i = 0; i < restaurant.types.length; i++ ) {
-            typeString = typeString+" "+restaurant.types[i];
-        }
-        console.log(typeString);
-        return typeString;
-    }
 
     getOpenNow(restaurant) {
         if(restaurant.open.open_now) {

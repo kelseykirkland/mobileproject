@@ -1,6 +1,6 @@
 //Default imports
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 
 import { styles } from './styles.js'
 
@@ -15,10 +15,18 @@ export default class HomeView extends React.Component{
 
     render() {
         return(
-            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+            <View style={styles.winnerContainer}>
                 <Text style= {styles.bigTitle}>The Amazing Restaurant Picker!</Text> 
-                <Button buttonStyle={styles.buttons} title= "Find Restaurants!" onPress={() => this.props.navigation.navigate("Location")} />
-                <Button title= "Favourites" onPress={() => this.props.navigation.navigate("Favourites")} />
+                {/* <Button buttonStyle={styles.buttons} title= "Find Restaurants!" onPress={() => this.props.navigation.navigate("Location")} />
+                <Button title= "Favourites" onPress={() => this.props.navigation.navigate("Favourites")} /> */}
+                <TouchableOpacity style = {styles.blueButton}
+                    onPress={() => this.props.navigation.navigate("Location")}>
+                   <Text style = {styles.blueButtonText}>Find Restaurants!</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style = {styles.clearButton}
+                    onPress={() => this.props.navigation.navigate("Favourites")}>
+                   <Text style = {styles.clearButtonText}>Favourites List</Text>
+                </TouchableOpacity>
             </View>
         );
     }

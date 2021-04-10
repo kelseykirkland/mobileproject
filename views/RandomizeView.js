@@ -1,7 +1,6 @@
 //Default imports
 import React from 'react';
-import { Button, Text, View, FlatList, Alert } from 'react-native';
-import RestaurantListView from './RestaurantListView.js';
+import { Text, View, FlatList, Alert, TouchableOpacity } from 'react-native';
 import RandomizeRestaurantListView from './RandomizeRestaurantListView.js';
 
 import { styles } from './styles.js'
@@ -25,15 +24,19 @@ export default class RandomizeView extends React.Component{
         randoList = this.props.route.params.state.randomizerController.getRandomizerList();
         return(
             <View style={styles.container}>
-                <Text style={styles.instructions}>These are the restaurants you picked! When you're ready, hit Randomize! to pick one!</Text> 
-                <Button title= "Randomize!" onPress={() => {
-                    if(randoList.length > 0) {
-                        this.props.navigation.navigate("Winner");
-                    } else {
-                        Alert.alert("Please select atleast one restaurant");
-                    }
-                }} />
-                <Button title= "Clear List" onPress={() => randomizerController.clearRandomizerList()} />
+                <Text style={styles.instructions}>These are the restaurants you picked!</Text> 
+                <Text style={styles.instructions}>When you're ready, hit Randomize! to pick one!</Text> 
+                <TouchableOpacity style = {styles.blueButton}
+                    onPress={() => {
+                      if(randoList.length > 0) {
+                            winner = this.props.route.params.state.randomizerController.randomize();
+                            this.props.navigation.navigate("Winner", {winner: winner});
+                      } else {
+                            Alert.alert("Please select at least one restaurant");
+                      }
+                    }}>
+                   <Text style = {styles.buttonText}> Randomize! </Text>
+                </TouchableOpacity>
                 <View style={styles.container}>
                     <FlatList 
                         data={randoList}

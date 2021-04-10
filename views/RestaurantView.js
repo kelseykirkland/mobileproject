@@ -3,7 +3,6 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 import { styles } from './styles.js'
-import { favouriteController } from './../Controllers/FavouriteController.js';
 
 export default class RestaurantView extends React.Component {
     constructor(props) {
@@ -13,7 +12,7 @@ export default class RestaurantView extends React.Component {
     render() {
         return(
             <View style={styles.infoContainer}>
-                <Text style= {styles.bigTitle}>{this.props.route.params.name}</Text> 
+                <Text style= {styles.bigTitle}>{this.props.route.params.restaurant.name}</Text> 
                 <Text style= {styles.address}> {this.props.route.params.state.favouriteController.getOpenNow(this.props.route.params.restaurant)} </Text>
                 <Text style= {styles.address}> {this.props.route.params.state.favouriteController.getRestaurantVicinity(this.props.route.params.restaurant)} </Text>
                 <Text style= {styles.smallTitle}> Rating: <Text style= {styles.infoBit}>{this.props.route.params.state.favouriteController.getRestaurantRating(this.props.route.params.restaurant)} </Text> 

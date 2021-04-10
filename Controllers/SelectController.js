@@ -2,10 +2,7 @@ import apikey from './../apikey.js';
 
 export default class SelectController {
 
-    selectList = [{"name": "Mcd", "vicinity": "123 this place", key: "ChIJsQ-E_sqEK4gRur_dZJGzG34", "rating": 1.1, "user_ratings_total": 100, "price_level": 1}, 
-    {"name": "Wendys ", "vicinity": "456 that place", key: "ChIJsQ-E", "rating": 2.2, "user_ratings_total": 200, "price_level": 2},
-    {"name": "A&W", "vicinity": "123 that other place", key: "dZJGzG34", "rating": 3.3, "user_ratings_total": 300, "price_level": 3 },
-    {"name": "5 Guys", "vicinity": "1001 Happy place", key: "sqEK4gRur", "rating": 4.4, "user_ratings_total": 400, "price_level": 4 }];
+    selectList = [];
 
     getSelectList() {
         return this.selectList;
@@ -29,24 +26,34 @@ export default class SelectController {
     setSelectList(data) {
         this.clearSelectList();
         this.selectList = data;
-        console.log("SELECT LIST");
-        console.log(this.selectList);
+        // console.log("SELECT LIST");
+        // console.log(this.selectList);
     }
 
     //Param: location in string from of lat,long
-    getRestaurantList(location) {
+    getRestaurantList(location, radius) {
         console.log("HELLO")
         console.log(location)
+
+        console.log("RADIUS: "+radius);
+
+        //var radiusNum = radius.toString();
+        if(radius == "default") {
+            radius = "5";
+        }
+        radius = radius * 1000;
+        console.log("RADIUS: "+radius);
+
 
         if(location == null) {
             console.log("location is null: "+location);
             return;
         }
 
-        // add api key here, take out to push to github
+                // add api key here, take out to push to github
         var key = apikey.apikey;
 
-        var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius=1500&type=restaurant&key='+key;
+        var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius='+radius+'&type=restaurant&key='+key;
         console.log(httpString);
         
         let request = new XMLHttpRequest();
@@ -56,9 +63,9 @@ export default class SelectController {
             //console.log(request);
             if(request.status == 200) {
                 //console.log(JSON.parse(request.response));
-                this.makeRestaurantList(JSON.parse(request.response))
+                this.makeRestaurantList(JSON.parse(request.response));
             } else {
-                console.log('error ${request.status} ${request.statusTest}')
+                console.log('error ${request.status} ${request.statusTest}');
             }
         }
 
