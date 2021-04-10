@@ -4,6 +4,7 @@ import { Text, View, FlatList, Button } from 'react-native';
 import RestaurantListView from './RestaurantListView.js';
 
 import { favouriteController } from './../Controllers/FavouriteController.js';
+import { styles } from './styles.js'
 
 export default class FavouriteView extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ export default class FavouriteView extends Component {
         console.log(this.props.route.params.state.favouriteController.getFavouriteList());
         return(
             <View>
-                <Text>Favourite Page</Text> 
+                <Text style={styles.smallTitle}>Your Favourites</Text> 
                 <View>
                     <FlatList 
                         data={this.props.route.params.state.favouriteController.getFavouriteList()}

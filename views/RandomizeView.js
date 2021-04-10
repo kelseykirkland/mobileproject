@@ -1,6 +1,6 @@
 //Default imports
 import React from 'react';
-import { Button, Text, View, FlatList, Alert } from 'react-native';
+import { Button, Text, View, FlatList, Alert, TouchableOpacity } from 'react-native';
 import RestaurantListView from './RestaurantListView.js';
 import RandomizeRestaurantListView from './RandomizeRestaurantListView.js';
 
@@ -19,15 +19,29 @@ export default class RandomizeView extends React.Component{
         console.log("dog");
         return(
             <View style={styles.container}>
-                <Text style={styles.instructions}>These are the restaurants you picked! When you're ready, hit Randomize! to pick one!</Text> 
-                <Button title= "Randomize!" onPress={() => {
+                <Text style={styles.instructions}>These are the restaurants you picked!</Text> 
+                <Text style={styles.instructions}>When you're ready, hit Randomize! to pick one!</Text> 
+                {/* <Button title= "Randomize!" onPress={() => {
                     if(randoList.length > 0) {
                         this.props.navigation.navigate("Winner");
                     } else {
                         Alert.alert("Please select atleast one restaurant");
                     }
-                }} />
-                <Button title= "Clear List" onPress={() => randomizerController.clearRandomizerList()} />
+                }} /> */}
+                <TouchableOpacity style = {styles.blueButton}
+                    onPress={() => {
+                      if(randoList.length > 0) {
+                          this.props.navigation.navigate("Winner");
+                      } else {
+                          Alert.alert("Please select atleast one restaurant");
+                      }
+                    }}>
+                   <Text style = {styles.buttonText}> Randomize! </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style = {styles.clearButton}
+                    onPress={() => randomizerController.clearRandomizerList()}>
+                   <Text style = {styles.clearButtonText}>Clear List</Text>
+                </TouchableOpacity>
                 <View style={styles.container}>
                     <FlatList 
                         data={randoList}
