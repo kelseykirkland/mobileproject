@@ -17,7 +17,6 @@ export default class RandomizerController {
         return this.winner;
     }
 
-    // possibly useless
     getWinnerName() {
         return this.winner.name;
     }
@@ -31,22 +30,10 @@ export default class RandomizerController {
         console.log("Set Winner: "+JSON.stringify(this.winner));
     }
 
-    // It doesnt use this
-    // This is useless
-    // Param: array of restraunt object 
-    setRandomizerList(data) {
-        this.randomizerList = [{key: "Delta"}, {key: "Echo"}, {key: "Fox"}];
-        //this.randomizeList = data;
-        //console.log("RandomizeList")
-        //console.log(this.randomizeList);
-    }
-
     addRestaurant(restaurant) {
         console.log(restaurant);
-        // var rest = {name: restaurant};
         this.randomizerList.push(restaurant);
         console.log(this.randomizerList);
-        //restObjList.push(rest);
     }
 
     randomize() {

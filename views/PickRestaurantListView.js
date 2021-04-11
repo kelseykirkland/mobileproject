@@ -51,7 +51,6 @@ export default class PickRestaurantListView extends React.Component {
         Alert.alert("Added "+ name + " to Favourites!");
     }
 
-//<Button title= "Yes" onPress={() => randomizerController.addRestaurant(this.props.restaurant)} />
     render () {
         return (
             <Animated.View style={{transform: [{ translateX: this.pos.x }, { translateY: this.pos.y }] }} {...this.panResponder.panHandlers}>

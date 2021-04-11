@@ -26,8 +26,6 @@ export default class SelectController {
     setSelectList(data) {
         this.clearSelectList();
         this.selectList = data;
-        // console.log("SELECT LIST");
-        // console.log(this.selectList);
     }
 
     //Param: location in string from of lat,long
@@ -37,7 +35,6 @@ export default class SelectController {
 
         console.log("RADIUS: "+radius);
 
-        //var radiusNum = radius.toString();
         if(radius == "default") {
             radius = "5";
         }
@@ -50,7 +47,7 @@ export default class SelectController {
             return;
         }
 
-                // add api key here, take out to push to github
+        // api key here
         var key = apikey.apikey;
 
         var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius='+radius+'&type=restaurant&key='+key;
@@ -60,9 +57,7 @@ export default class SelectController {
         request.open("GET", httpString);
         request.send();
         request.onload = () => {
-            //console.log(request);
             if(request.status == 200) {
-                //console.log(JSON.parse(request.response));
                 this.makeRestaurantList(JSON.parse(request.response));
             } else {
                 console.log('error ${request.status} ${request.statusTest}');
@@ -77,15 +72,12 @@ export default class SelectController {
         var restObjList = [];
 
         for (let i = 0; i < data.results.length; i++) {
-            //console.log(data.results[i].name);
             restList.push(data.results[i].name);
             var rest = {"name": data.results[i].name, "vicinity": data.results[i].vicinity, key: data.results[i].place_id,
                         "rating": data.results[i].rating, "user_ratings_total": data.results[i].user_ratings_total, "price_level": data.results[i].price_level, 
                         "open": data.results[i].opening_hours, "types": data.results[i].types}
             restObjList.push(rest)
         }
-        //console.log(restList);
-        //console.log(restObjList);
         this.setSelectList(restObjList);
     }
     

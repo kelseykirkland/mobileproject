@@ -46,7 +46,7 @@ export default class LocationView extends React.Component{
 
     checkCoordinates() {
         if(this.state.location == null) {
-            return "Finding Your Location.../nPlease wait until we have your coordinates.";
+            return "Finding Your Location. Please wait until we have your coordinates.";
         }
         else {
             return "";
@@ -57,7 +57,8 @@ export default class LocationView extends React.Component{
     render() {
         return (
             <View style={styles.locationContainer}>
-                <Text style={styles.smallText}>{this.checkCoordinates}</Text> 
+                <Text style={styles.smallTitle}>Finding Your Location...</Text> 
+                <Text style={styles.smallText}>Please wait until we have your coordinates.</Text> 
                 <Text style={styles.smallTitle} onPress={this.getCoordinates()}> Location: </Text>
                 <Text>{this.state.location}</Text>
                 <Text style={styles.distanceText}>Enter Distance (km)</Text>

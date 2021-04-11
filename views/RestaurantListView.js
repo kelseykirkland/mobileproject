@@ -3,7 +3,6 @@ import { Button, Text, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { styles } from './styles.js'
-//import { favouriteController } from '../Controllers/FavouriteController.js';
 
 export default class RestaurantListView extends React.Component {
     constructor(props) {
@@ -37,4 +36,4 @@ RestaurantListView.propTypes = {
     refresh: PropTypes.func.isRequired
 };
 
-//<View style={{Height: 50, borderColor: 'Black', borderBottomWidth: 1, borderTopWidth: 1, borderLeftWidth: 1, borderRightWidth: 1}}>
+// FLATLIST FOR FAVOURITES PAGE

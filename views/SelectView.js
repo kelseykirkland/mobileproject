@@ -15,7 +15,7 @@ export default class SelectView extends React.Component {
     }
 
     refresh() {
-        console.log(refresh);
+        console.log("refresh");
         
     }
 
@@ -41,4 +41,3 @@ export default class SelectView extends React.Component {
         );
     }
 }
-

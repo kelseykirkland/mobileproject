@@ -135,6 +135,9 @@ export default class FavouriteController {
     }
 
     getRestaurantPriceLevel(restaurant) {
+        if (restaurant.price_level == null) {
+            return "";
+        }
         console.log(restaurant.price_level);
         return restaurant.price_level;
     }
