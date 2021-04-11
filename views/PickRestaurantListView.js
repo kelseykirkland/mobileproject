@@ -6,8 +6,8 @@ import { styles } from './styles.js'
 
 export default class PickRestaurantListView extends React.Component {
     screenWidth = Dimensions.get('window').width;
-    leftSubmitPoint = -0.3 * this.screenWidth;
-    rightSubmitPoint = 0.3 * this.screenWidth;
+    leftSubmitPoint = -0.1 * this.screenWidth;
+    rightSubmitPoint = 0.1 * this.screenWidth;
 
     constructor(props) {
         super(props);

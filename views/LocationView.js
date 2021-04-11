@@ -15,6 +15,7 @@ export default class LocationView extends React.Component{
     
     constructor(props) {
         super(props);
+        this.getCoordinates();
     }
 
     getCoordinates = () => {
@@ -59,7 +60,7 @@ export default class LocationView extends React.Component{
             <View style={styles.locationContainer}>
                 <Text style={styles.smallTitle}>Finding Your Location...</Text> 
                 <Text style={styles.smallText}>Please wait until we have your coordinates.</Text> 
-                <Text style={styles.smallTitle} onPress={this.getCoordinates()}> Location: </Text>
+                {/* <Text style={styles.smallTitle} onPress={this.getCoordinates}> Location: </Text> */}
                 <Text>{this.state.location}</Text>
                 <Text style={styles.distanceText}>Enter Distance (km)</Text>
                 <TextInput style = {styles.input}

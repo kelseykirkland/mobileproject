@@ -15,8 +15,7 @@ export default class SelectView extends React.Component {
     }
 
     refresh() {
-        console.log("refresh");
-        
+        this.setState(({ refresh }) => ({ refresh: !refresh }));
     }
 
     render() {

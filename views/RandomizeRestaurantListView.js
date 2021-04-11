@@ -19,15 +19,15 @@ export default class RandomizeRestaurantListView extends React.Component {
             <View style={styles.listItem}>
                 <Text style={styles.listText}> {this.props.name} </Text>
                 <Text style={styles.smallButtonContainer}>
-                        <TouchableOpacity style = {styles.smallButton}
+                        <TouchableOpacity style = {styles.letterButton}
                             onPress={() => { this.props.favouriteController.addToFavouriteList(this.props.restaurant) ; this.favouriteAdded(this.props.name) }}>
                             <Text style = {styles.smallButtonText}> Fav </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style = {styles.smallButton}
+                        <TouchableOpacity style = {styles.letterButton}
                             onPress={() => this.props.navFunc("Restaurant", { name: this.props.name, restaurant: this.props.restaurant })}>
                             <Text style = {styles.smallButtonText}> Info </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style = {styles.smallButton}
+                        <TouchableOpacity style = {styles.letterButton}
                             onPress={() =>{this.props.randomizerController.removeFromRandomize(this.props.restaurant); this.props.refresh();}} >
                             <Text style = {styles.smallButtonText}> Remove </Text>
                         </TouchableOpacity>
