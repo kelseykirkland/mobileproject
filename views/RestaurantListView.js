@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { styles } from './styles.js'
@@ -14,8 +14,16 @@ export default class RestaurantListView extends React.Component {
         return (
             <View style={styles.favListItem}>
                 <Text style={styles.listText}> {this.props.name} </Text>
-                <Button title= "Info" onPress={() => this.props.navFunc("Restaurant", { name: this.props.name, restaurant: this.props.restaurant })} />
-                <Button title= "Remove" onPress={() => this.props.favouriteController.removeFromFavourites(this.props.restaurant)} />
+                <Text>
+                <TouchableOpacity style = {styles.letterButton}
+                            onPress={() => this.props.navFunc("Restaurant", { name: this.props.name, restaurant: this.props.restaurant })}>
+                            <Text style = {styles.smallButtonText}> Info </Text>
+                        </TouchableOpacity>
+                <TouchableOpacity style = {styles.letterButton}
+                        onPress={() => this.props.favouriteController.removeFromFavourites(this.props.restaurant)} >
+                        <Text style = {styles.smallButtonText}> Remove </Text>
+                </TouchableOpacity>
+                </Text>
             </View>
         );
     }

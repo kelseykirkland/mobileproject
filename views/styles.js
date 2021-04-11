@@ -14,8 +14,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     listContainer: {
+        flex: 1,
         marginTop: 10,
-        height: 200,
+        backgroundColor: "#ccd9db",
+        width: 300,
+        alignItems: "center",
+        margin: 5
     },
     winnerContainer: {
         flex: 1,
@@ -64,26 +68,22 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginBottom: 5,
     },
-    buttons: {
-        marginRight:40,
-        marginLeft:40,
-        marginTop:10,
-        paddingTop:10,
-        paddingBottom:10,
-        backgroundColor:'#1E6738',
-        borderRadius:10,
-        borderWidth: 1,
-        borderColor: 'red'
-
+    favouriteTitle: {
+        fontSize: 30,
+        textAlign: "center",
+        fontWeight: "bold",
+        margin: 10
     },
     listItem: {
-        height:100,
+        height:110,
         borderColor: "black",
         borderWidth: 1,
-        margin: 5,
+        margin: 10,
+        backgroundColor: "#30fff5",
+        width: 225
     },
     favListItem: {
-        height:100,
+        height:75,
         borderColor: "black",
         borderWidth: 1,
     },
@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         borderColor: '#7a42f4',
         borderWidth: 2,
-
     },
     purpleButton: {
         backgroundColor: '#7a42f4',
@@ -143,7 +142,28 @@ const styles = StyleSheet.create({
     clearButtonText: {
         color: "blue",
         fontSize: 18,
-
+    },
+    smallButton: {
+        backgroundColor: 'white',
+        borderColor: "blue",
+        borderWidth: 2,
+        padding: 5,
+    },
+    smallButtonText: {
+        color: "blue",
+        fontSize: 20,
+    },
+    smallButtonContainer: {
+        margin: 7,
+    },
+    letterButton: {
+        padding: 5,
+        color: "#30fff5"
+    },
+    disabledButton: {
+        backgroundColor: '#77787a',
+        padding: 10,
+        margin: 15,
     }
 
 });

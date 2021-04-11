@@ -22,7 +22,7 @@ export default class SelectView extends React.Component {
                    onPress={() => this.props.navigation.navigate("Randomizer")}>
                    <Text style = {styles.buttonText}> Done! </Text>
                 </TouchableOpacity>
-                <View style={styles.container}>
+                <View style={styles.listContainer}>
                     <FlatList 
                         data={this.props.route.params.state.selectController.getSelectList()}
                         renderItem={({item}) => (
