@@ -16,7 +16,7 @@ export default class FavouriteView extends Component {
         console.log(this.props.route.params.state.favouriteController.getFavouriteList());
         return(
             <View>
-                <Text style={styles.smallTitle}>Your Favourites</Text> 
+                <Text style={styles.favouriteTitle}>Your Favourites</Text> 
                 <View>
                     <FlatList 
                         data={this.props.route.params.state.favouriteController.getFavouriteList()}

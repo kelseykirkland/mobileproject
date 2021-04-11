@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, Animated, PanResponder, Dimensions } from 'react-native';
+import { Button, Text, View, Animated, PanResponder, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import PropTypes from 'prop-types'
 
 import { styles } from './styles.js'
@@ -46,15 +46,26 @@ export default class PickRestaurantListView extends React.Component {
         });
     }
 
+    favouriteAdded = (name) => {
+        console.log("Alert");
+        Alert.alert("Added "+ name + " to Favourites!");
+    }
+
 //<Button title= "Yes" onPress={() => randomizerController.addRestaurant(this.props.restaurant)} />
     render () {
         return (
             <Animated.View style={{transform: [{ translateX: this.pos.x }, { translateY: this.pos.y }] }} {...this.panResponder.panHandlers}>
                 <View style={styles.listItem}>
                     <Text style={styles.listText}> {this.props.name} </Text>
-                    <Text>
-                    <Button title= "Info" onPress={() => this.props.navFunc("Restaurant", { name: this.props.name, restaurant: this.props.restaurant })} />
-                    <Button title= "Fav" onPress={() => this.props.favouriteController.addToFavouriteList(this.props.restaurant)} />
+                    <Text style={styles.smallButtonContainer}>
+                        <TouchableOpacity style = {styles.letterButton}
+                            onPress={() => { this.props.favouriteController.addToFavouriteList(this.props.restaurant) ; this.favouriteAdded(this.props.name) }}>
+                            <Text style = {styles.smallButtonText}> Fav </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style = {styles.letterButton}
+                            onPress={() => this.props.navFunc("Restaurant", { name: this.props.name, restaurant: this.props.restaurant })}>
+                            <Text style = {styles.smallButtonText}> Info </Text>
+                        </TouchableOpacity>
                     </Text>
                 </View>
             </Animated.View>

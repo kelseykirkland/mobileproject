@@ -42,7 +42,7 @@ export default class RandomizeView extends React.Component{
                     onPress={() => randomizerController.clearRandomizerList()}>
                    <Text style = {styles.clearButtonText}>Clear List</Text>
                 </TouchableOpacity>
-                <View style={styles.container}>
+                <View style={styles.listContainer}>
                     <FlatList 
                         data={randoList}
                         renderItem={({item}) => (

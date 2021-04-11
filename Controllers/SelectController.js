@@ -2,10 +2,7 @@ import apikey from './../apikey.js';
 
 export default class SelectController {
 
-    selectList = [{"name": "Mcd", "vicinity": "123 this place", key: "ChIJsQ-E_sqEK4gRur_dZJGzG34", "rating": 1.1, "user_ratings_total": 100, "price_level": 1}, 
-    {"name": "Wendys ", "vicinity": "456 that place", key: "ChIJsQ-E", "rating": 2.2, "user_ratings_total": 200, "price_level": 2},
-    {"name": "A&W", "vicinity": "123 that other place", key: "dZJGzG34", "rating": 3.3, "user_ratings_total": 300, "price_level": 3 },
-    {"name": "5 Guys", "vicinity": "1001 Happy place", key: "sqEK4gRur", "rating": 4.4, "user_ratings_total": 400, "price_level": 4 }];
+    selectList = [];
 
     getSelectList() {
         return this.selectList;

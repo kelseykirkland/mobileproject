@@ -12,6 +12,8 @@ export default class LocationView extends React.Component{
         latitude: null,
         location: null,
         radius: "5",
+        buttonDisabled: true,
+        buttonStyle: styles.disabledButton,
     };
     
     constructor(props) {
@@ -28,6 +30,12 @@ export default class LocationView extends React.Component{
               longitude: longitude,
               latitude: latitude,
               location: location});
+
+            this.props.route.params.state.selectController.getRestaurantList(this.state.location, this.state.radius);
+            this.setState({
+                buttonDisabled: false,
+                buttonStyle: styles.purpleButton
+            })
           },
           error => Alert.alert(error.message),
                 { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -40,7 +48,6 @@ export default class LocationView extends React.Component{
     }
 
    
-    
     render() {
         return (
             <View style={styles.locationContainer}>
@@ -48,7 +55,6 @@ export default class LocationView extends React.Component{
                 <Text style={styles.smallText}>Please wait until we have your coordinates.</Text> 
                 <Text style={styles.smallTitle} onPress={this.getCoordinates()}> Location: </Text>
                 <Text>{this.state.location}</Text>
-                {/* <Button title= "Confirm" onPress={() => this.props.navigation.navigate("Select")} /> */}
                 <Text style={styles.distanceText}>Enter Distance (km)</Text>
                 <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -56,10 +62,12 @@ export default class LocationView extends React.Component{
                 placeholderTextColor = "#7a42f4"
                 autoCapitalize = "none"
                 onChangeText = {this.handleRadius}
+                dis
                 />
-                <TouchableOpacity style = {styles.purpleButton}
-                   onPress={() => { this.props.route.params.state.selectController.getRestaurantList(this.state.location, this.state.radius); this.props.navigation.navigate("Select") } }>
-                   <Text style = {styles.buttonText}> Get Restaurants </Text>
+                <TouchableOpacity style = {this.state.buttonStyle}
+                    disabled={this.state.buttonDisabled} 
+                    onPress={() => this.props.navigation.navigate("Select")  }>
+                    <Text style = {styles.buttonText}> Get Restaurants </Text>
                 </TouchableOpacity>
             </View>
         );
