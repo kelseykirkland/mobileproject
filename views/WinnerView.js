@@ -1,10 +1,7 @@
 //Default imports
 import React from 'react';
-import { Button, Text, View, TouchableOpacity } from 'react-native';
-
-import { styles } from './styles.js'
-import { randomizerController } from './../Controllers/RandomizerController.js';
-import { favouriteController } from './../Controllers/FavouriteController.js';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { styles } from './styles.js';
 
 export default class WinnerView extends React.Component{
     constructor(props) {
@@ -12,7 +9,7 @@ export default class WinnerView extends React.Component{
     }
 
     render() {
-        winner = randomizerController.randomize();
+        winner = this.props.route.params.winner;
         return(
             <View style={styles.winnerContainer}>
                 <Text style={styles.bigTitle}>Winner!</Text> 
@@ -27,7 +24,7 @@ export default class WinnerView extends React.Component{
                    <Text style = {styles.clearButtonText}>Home</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style = {styles.clearButton}
-                    onPress={() => { randomizerController.removeFromRandomize(winner.name); this.props.navigation.navigate("Randomizer")}}>
+                    onPress={() => { this.props.route.params.state.randomizerController.removeFromRandomize(winner); this.props.navigation.navigate("Randomizer")}}>
                    <Text style = {styles.clearButtonText}>Spin Again</Text>
                 </TouchableOpacity>
             </View>

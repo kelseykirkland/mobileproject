@@ -63,10 +63,10 @@ export default class RandomizerController {
         return this.winner;
     }
 
-    removeFromRandomize(restaurantName) {
-        console.log("Removing "+restaurantName);
+    removeFromRandomize(restaurant) {
+        console.log("Removing "+restaurant);
         for (var i = 0; i < this.randomizerList.length; i++) {
-            if(restaurantName == this.randomizerList[i].name) {
+            if(restaurant.key == this.randomizerList[i].key) {
                 this.randomizerList.splice(i,1);
             }
         }

@@ -20,7 +20,7 @@ export default class RestaurantListView extends React.Component {
                             <Text style = {styles.smallButtonText}> Info </Text>
                         </TouchableOpacity>
                 <TouchableOpacity style = {styles.letterButton}
-                        onPress={() => this.props.favouriteController.removeFromFavourites(this.props.restaurant)} >
+                        onPress={() =>{ this.props.favouriteController.removeFromFavourites(this.props.restaurant); this.props.refresh()}} >
                         <Text style = {styles.smallButtonText}> Remove </Text>
                 </TouchableOpacity>
                 </Text>
@@ -34,6 +34,7 @@ RestaurantListView.propTypes = {
     navFunc: PropTypes.func.isRequired, 
     restaurant: PropTypes.object.isRequired, 
     favouriteController: PropTypes.object.isRequired, 
+    refresh: PropTypes.func.isRequired
 };
 
 //<View style={{Height: 50, borderColor: 'Black', borderBottomWidth: 1, borderTopWidth: 1, borderLeftWidth: 1, borderRightWidth: 1}}>

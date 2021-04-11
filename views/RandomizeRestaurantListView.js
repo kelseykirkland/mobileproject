@@ -3,8 +3,6 @@ import { Button, Text, View, TouchableOpacity, Alert } from 'react-native';
 import PropTypes from 'prop-types'
 
 import { styles } from './styles.js'
-import { randomizerController } from '../Controllers/RandomizerController.js';
-import { favouriteController } from '../Controllers/FavouriteController.js';
 
 export default class RandomizeRestaurantListView extends React.Component {
     constructor(props) {
@@ -30,7 +28,7 @@ export default class RandomizeRestaurantListView extends React.Component {
                             <Text style = {styles.smallButtonText}> Info </Text>
                         </TouchableOpacity>
                         <TouchableOpacity style = {styles.smallButton}
-                            onPress={() => this.props.randomizerController.removeFromRandomize(this.props.name)} >
+                            onPress={() =>{this.props.randomizerController.removeFromRandomize(this.props.restaurant); this.props.refresh();}} >
                             <Text style = {styles.smallButtonText}> Remove </Text>
                         </TouchableOpacity>
                 </Text>
@@ -40,11 +38,11 @@ export default class RandomizeRestaurantListView extends React.Component {
 }
 
 RandomizeRestaurantListView.propTypes = {
-    name: PropTypes.string.isRequired, 
     navFunc: PropTypes.func.isRequired, 
     restaurant: PropTypes.object.isRequired, 
     favouriteController: PropTypes.object.isRequired,
     randomizerController: PropTypes.object.isRequired,
+    refresh: PropTypes.func.isRequired
 };
 
 // THIS VIEW IS FOR RANDOMIZER PAGE. RESTAURANTS THAT ARE RANDOMLY PICKED FROM.

@@ -3,8 +3,6 @@ import { Button, Text, View, Animated, PanResponder, Dimensions, TouchableOpacit
 import PropTypes from 'prop-types'
 
 import { styles } from './styles.js'
-import { randomizerController } from './../Controllers/RandomizerController.js';
-import { favouriteController } from './../Controllers/FavouriteController.js';
 
 export default class PickRestaurantListView extends React.Component {
     screenWidth = Dimensions.get('window').width;
@@ -32,12 +30,14 @@ export default class PickRestaurantListView extends React.Component {
               if(this.pos.x._value > this.rightSubmitPoint)  {
                 console.log("LIKE");
                 Animated.spring(this.pos, {toValue: { x: (1 * this.screenWidth), y: 0 }, useNativeDriver: false}).start();
-                randomizerController.addRestaurant(this.props.restaurant);
-                this.props.selectController.removeFromSelect(this.props.restaurant);
+                this.props.parentState.randomizerController.addRestaurant(this.props.restaurant);
+                this.props.parentState.selectController.removeFromSelect(this.props.restaurant);
+                this.props.refresh();
               } else if(this.pos.x._value < this.leftSubmitPoint) {
                 console.log("DO NOT LIKE");
                 Animated.spring(this.pos, {toValue: { x: (-1 * this.screenWidth), y: 0 }, useNativeDriver: false}).start();
-                this.props.selectController.removeFromSelect(this.props.restaurant);
+                this.props.parentState.selectController.removeFromSelect(this.props.restaurant);
+                this.props.refresh();
               } else {
                 console.log("MOVE MORE");
                 Animated.spring(this.pos, {toValue: { x: 0, y: 0 }, useNativeDriver: false}).start();
@@ -59,7 +59,7 @@ export default class PickRestaurantListView extends React.Component {
                     <Text style={styles.listText}> {this.props.name} </Text>
                     <Text style={styles.smallButtonContainer}>
                         <TouchableOpacity style = {styles.letterButton}
-                            onPress={() => { this.props.favouriteController.addToFavouriteList(this.props.restaurant) ; this.favouriteAdded(this.props.name) }}>
+                            onPress={() => { this.props.parentState.favouriteController.addToFavouriteList(this.props.restaurant) ; this.favouriteAdded(this.props.name) }}>
                             <Text style = {styles.smallButtonText}> Fav </Text>
                         </TouchableOpacity>
                         <TouchableOpacity style = {styles.letterButton}
@@ -77,8 +77,8 @@ PickRestaurantListView.propTypes = {
     name: PropTypes.string.isRequired, 
     navFunc: PropTypes.func.isRequired, 
     restaurant: PropTypes.object.isRequired,
-    favouriteController: PropTypes.object.isRequired,
-    selectController: PropTypes.object.isRequired
+    parentState: PropTypes.object.isRequired,
+    refresh: PropTypes.func.isRequired
 };
 
 // THIS VIEW IS FOR SELECT PAGE. RESTAURANT TO BE PICKED FOR RANDOMIZE LIST

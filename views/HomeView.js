@@ -1,6 +1,6 @@
 //Default imports
 import React from 'react';
-import { Button, Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 
 import { styles } from './styles.js'
 

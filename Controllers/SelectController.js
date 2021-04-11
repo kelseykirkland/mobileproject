@@ -38,6 +38,9 @@ export default class SelectController {
         console.log("RADIUS: "+radius);
 
         //var radiusNum = radius.toString();
+        if(radius == "default") {
+            radius = "5";
+        }
         radius = radius * 1000;
         console.log("RADIUS: "+radius);
 
@@ -47,7 +50,7 @@ export default class SelectController {
             return;
         }
 
-        // add api key here, take out to push to github
+                // add api key here, take out to push to github
         var key = apikey.apikey;
 
         var httpString = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius='+radius+'&type=restaurant&key='+key;
@@ -60,9 +63,9 @@ export default class SelectController {
             //console.log(request);
             if(request.status == 200) {
                 //console.log(JSON.parse(request.response));
-                this.makeRestaurantList(JSON.parse(request.response))
+                this.makeRestaurantList(JSON.parse(request.response));
             } else {
-                console.log('error ${request.status} ${request.statusTest}')
+                console.log('error ${request.status} ${request.statusTest}');
             }
         }
 

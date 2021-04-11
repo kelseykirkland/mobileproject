@@ -1,7 +1,6 @@
 //Default imports
 import React from 'react';
-import { Button, Text, View, FlatList, Alert, TouchableOpacity } from 'react-native';
-import RestaurantListView from './RestaurantListView.js';
+import { Text, View, FlatList, Alert, TouchableOpacity } from 'react-native';
 import RandomizeRestaurantListView from './RandomizeRestaurantListView.js';
 
 import { styles } from './styles.js'
@@ -12,41 +11,38 @@ export default class RandomizeView extends React.Component{
         super(props);
     }
 
+    state = {
+        refresh: true
+    }
+
+    refresh() {
+        this.setState(({ refresh }) => ({ refresh: !refresh }));
+    }
+
     render() {
         console.log("randomizer List:\n");
-        randoList = randomizerController.getRandomizerList();
-        console.log(randoList.length);
-        console.log("dog");
+        randoList = this.props.route.params.state.randomizerController.getRandomizerList();
         return(
             <View style={styles.container}>
                 <Text style={styles.instructions}>These are the restaurants you picked!</Text> 
                 <Text style={styles.instructions}>When you're ready, hit Randomize! to pick one!</Text> 
-                {/* <Button title= "Randomize!" onPress={() => {
-                    if(randoList.length > 0) {
-                        this.props.navigation.navigate("Winner");
-                    } else {
-                        Alert.alert("Please select atleast one restaurant");
-                    }
-                }} /> */}
                 <TouchableOpacity style = {styles.blueButton}
                     onPress={() => {
                       if(randoList.length > 0) {
-                          this.props.navigation.navigate("Winner");
+                            winner = this.props.route.params.state.randomizerController.randomize();
+                            this.props.navigation.navigate("Winner", {winner: winner});
                       } else {
-                          Alert.alert("Please select atleast one restaurant");
+                            Alert.alert("Please select at least one restaurant");
                       }
                     }}>
                    <Text style = {styles.buttonText}> Randomize! </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style = {styles.clearButton}
-                    onPress={() => randomizerController.clearRandomizerList()}>
-                   <Text style = {styles.clearButtonText}>Clear List</Text>
-                </TouchableOpacity>
                 <View style={styles.listContainer}>
                     <FlatList 
                         data={randoList}
+                        extraData={this.state.refresh}
                         renderItem={({item}) => (
-                            <RandomizeRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController} randomizerController={this.props.route.params.state.randomizerController}/>
+                            <RandomizeRestaurantListView name={item.name} navFunc={this.props.navigation.navigate} restaurant={item} favouriteController={this.props.route.params.state.favouriteController} randomizerController={this.props.route.params.state.randomizerController} refresh={this.refresh.bind(this)}/>
                         )}
                     />
                 </View>
